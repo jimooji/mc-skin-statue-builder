@@ -1,0 +1,56 @@
+[project]
+name = "mc-skin-statue-builder"
+version = "0.1.0"
+description = "Convert Minecraft skins to Litematica statue schematics"
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.10"
+authors = [
+    {name = "mc-skin-statue-builder contributors"}
+]
+keywords = ["minecraft", "skin", "litematica", "schematic", "statue", "builder"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: End Users/Desktop",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Games/Entertainment",
+]
+
+dependencies = [
+    "pillow>=10.0",
+    "numpy>=1.24",
+    "nbtlib>=2.0",
+    "click>=8.1",
+]
+
+[project.optional-dependencies]
+lab = ["scikit-image>=0.22"]
+preview = ["matplotlib>=3.7", "pyvista>=0.43"]
+dev = ["pytest>=7.4", "pytest-cov>=4.1", "black>=23.0", "ruff>=0.1"]
+
+[project.scripts]
+mc-skin-statue = "mc_skin_statue.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/jimooji/mc-skin-statue-builder"
+Issues = "https://github.com/jimooji/mc-skin-statue-builder/issues"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/mc_skin_statue"]
+
+[tool.black]
+line-length = 100
+target-version = ['py310']
+
+[tool.ruff]
+line-length = 100
+select = ["E", "F", "I", "W"]
+ignore = ["E501"]
